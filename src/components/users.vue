@@ -21,28 +21,32 @@
 </template>
 
 <script setup>
-    import axios from 'axios';
-    import { useToast } from 'vue-toast-notification';
+    import getUsers from '@/composables/getUsers';
+    const { data, loadUsers } = getUsers();
 
-    import { onMounted, reactive } from 'vue';
+    loadUsers();
+   // import axios from 'axios';
+    // import { useToast } from 'vue-toast-notification';
+
+    // import { onMounted, reactive } from 'vue';
     
-    const $toast = useToast();
+    // const $toast = useToast();
 
-    const data = reactive({
-        loading:true,
-        users: []
-    })
+    // const data = reactive({
+    //     loading:true,
+    //     users: []
+    // })
 
-    const loadUsers = async() =>{
-        try{
-            const response = await axios.get(`http://localhost:3004/users`);
-            data.users = response.data;
-            data.loading = false;
-        } catch(error){
-            $toast.error('Sorry, Something went wrong')
-        }
-    }
-    onMounted(()=>{
-        loadUsers();
-    })
+    // const loadUsers = async() =>{
+    //     try{
+    //         const response = await axios.get(`http://localhost:3004/users`);
+    //         data.users = response.data;
+    //         data.loading = false;
+    //     } catch(error){
+    //         $toast.error('Sorry, Something went wrong')
+    //     }
+    // }
+    // onMounted(()=>{
+    //     loadUsers();
+    // })
 </script>
