@@ -33,15 +33,14 @@
         users: []
     })
 
-    const loadUsers = () =>{
-        axios.get(`http://localhost:3004/users`)
-        .then(response=>{
+    const loadUsers = async() =>{
+        try{
+            const response = await axios.get(`http://localhost:3004/users`);
             data.users = response.data;
             data.loading = false;
-        })
-        .catch(error=>{
+        } catch(error){
             $toast.error('Sorry, Something went wrong')
-        })
+        }
     }
     onMounted(()=>{
         loadUsers();
